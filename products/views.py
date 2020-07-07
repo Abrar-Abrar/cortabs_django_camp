@@ -5,6 +5,10 @@ from django.utils import timezone
 # Create your views here.
 
 
+def home(request):
+    return render(request, 'home.html')
+
+
 def products_list(request):
     products = Product.objects.all()
     return render(request,
