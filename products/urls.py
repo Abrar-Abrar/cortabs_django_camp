@@ -5,5 +5,5 @@ urlpatterns = [
     path('products/', products_list, name='products_list'),
     path('show-time/', show_time),
     path('products/<pk>', product_details, name='product_details'),
-    path('safe-eyrie-78531.herokuapp.com/', home, name='home')
+    path('abrar-django-camp.herokuapp.com/', home, name='home')
 ]
