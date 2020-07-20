@@ -19,11 +19,11 @@ from django.shortcuts import redirect
 
 
 def home(request):
-    return redirect(request, 'products_list')
+    return redirect('products_list')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),
+    path('/', home, name='home'),
     path('', include('products.urls'))
 ]

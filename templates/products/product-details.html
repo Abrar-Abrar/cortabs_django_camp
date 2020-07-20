@@ -12,6 +12,12 @@
     <h1>{{product.title}}</h1>
     <div>{{product.price}}</div>
     <p>{{product.description}}</p>
+    <a href="{% url 'product_edit' pk=product.id %}">
+        <h2>Edit</h2>
+    </a>
+    <a href="{% url 'product_delete' pk=product.id %}">
+        <h2>Delete</h2>
+    </a>
     <a href="{% url 'products_list' %}">Click here to back to products page</a>
 </body>
 
