@@ -10,7 +10,7 @@
 <body>
     <div>{{product.brand}}</div>
     <h1>{{product.title}}</h1>
-    <div>{{product.price}}</div>
+    <div>${{product.price}}</div>
     <p>{{product.description}}</p>
     <a href="{% url 'product_edit' pk=product.id %}">
         <h2>Edit</h2>
