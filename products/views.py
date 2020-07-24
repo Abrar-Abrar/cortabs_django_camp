@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
 from .forms import AddProductForm
 from django.utils import timezone
@@ -19,52 +19,53 @@ def product_details(request, pk):
 
 
 def product_add(request):
-    if request.method == 'POST':
-        '''
-        brand = request.POST['brand']
-        title = request.POST['title']
-        description = request.POST['description']
-        price = request.POST['price']
+    if request.user.is_authenticated and request.user.is_superuser:
+        if request.method == 'POST':
+            form = AddProductForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                msg = 'Product added successfully!'
+                return render(request, 'products/product-crud-msg.html',
+                              {'message': msg})
 
-        new_product = Product.objects.create(
-            brand=brand, title=title, description=description, price=price)
-        '''
-        form = AddProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            msg = 'Product added successfully!'
-            return render(request, 'products/product-crud-msg.html',
-                          {'message': msg})
-
+        else:
+            form = AddProductForm()
+        return render(request, 'products/product-add.html', {'form': form})
     else:
-        form = AddProductForm()
-    return render(request, 'products/product-add.html', {'form': form})
+        return redirect('products_list')
 
 
 def product_edit(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == 'POST':
-        form = AddProductForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
-            msg = 'Product modified successfully!'
-            return render(request, 'products/product-crud-msg.html',
-                          {'message': msg})
+    if request.user.is_authenticated and request.user.is_superuser:
+        product = get_object_or_404(Product, pk=pk)
+        if request.method == 'POST':
+            form = AddProductForm(
+                request.POST, request.FILES, instance=product)
+            if form.is_valid():
+                form.save()
+                msg = 'Product modified successfully!'
+                return render(request, 'products/product-crud-msg.html',
+                              {'message': msg})
 
+        else:
+            form = AddProductForm(instance=product)
+        return render(request, 'products/product-add.html', {'form': form})
     else:
-        form = AddProductForm(instance=product)
-    return render(request, 'products/product-add.html', {'form': form})
+        return redirect('products_list')
 
 
 def product_delete(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    if request.user.is_authenticated and request.user.is_superuser:
+        product = get_object_or_404(Product, pk=pk)
 
-    if product.delete():
-        msg = 'Product deleted successfully!'
+        if product.delete():
+            msg = 'Product deleted successfully!'
+        else:
+            msg = 'Product failed to delete!'
+        return render(request, 'products/product-crud-msg.html',
+                      {'message': msg})
     else:
-        msg = 'Product failed to delete!'
-    return render(request, 'products/product-crud-msg.html',
-                  {'message': msg})
+        return redirect('products_list')
 
 
 def show_time(request):

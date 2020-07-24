@@ -6,7 +6,9 @@
 
     <h2 class="section-headline">
     Featured Products 
-    <a href="{% url 'product_add' %}"><i class="fa fa-plus fa-xs"></i></a>
+    {% if user.is_superuser %} 
+        <a href="{% url 'product_add' %}"><i class="fa fa-plus fa-xs"></i></a> 
+    {% endif %}
     </h2>
     <p class="section-description">
         Refresh your look with pieces of our winter collection

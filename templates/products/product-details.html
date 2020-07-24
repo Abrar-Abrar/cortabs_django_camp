@@ -13,8 +13,11 @@
         <p class="product-desc">
             {{product.description}}
         </p>
-        <a href="{% url 'product_edit' pk=product.id %}" class="edit-btn">Edit</a>
-        <a href="{% url 'product_delete' pk=product.id %}" class="delete-btn">Delete</a>
+        {% if user.is_superuser %}         
+            <a href="{% url 'product_edit' pk=product.id %}" class="edit-btn">Edit</a>
+            <a href="{% url 'product_delete' pk=product.id %}" class="delete-btn">Delete</a>
+        {% endif %}
+
     </div>
 </section>
 {% endblock %}
