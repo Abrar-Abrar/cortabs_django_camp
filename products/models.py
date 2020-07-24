@@ -10,6 +10,7 @@ class Product(models.Model):
     description = models.CharField(max_length=250, blank=True,  null=True)
     price = models.PositiveIntegerField()
     create_at = models.DateField(default=date.today())
+    image = models.ImageField(upload_to='products/', null=True)
 
     def get_absolute_url(self):
         return reverse("product_details", kwargs={"pk": self.pk})

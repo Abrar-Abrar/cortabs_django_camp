@@ -29,7 +29,7 @@ def product_add(request):
         new_product = Product.objects.create(
             brand=brand, title=title, description=description, price=price)
         '''
-        form = AddProductForm(request.POST)
+        form = AddProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             msg = 'Product added successfully!'
@@ -44,7 +44,7 @@ def product_add(request):
 def product_edit(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
-        form = AddProductForm(request.POST, instance=product)
+        form = AddProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
             msg = 'Product modified successfully!'
@@ -58,6 +58,7 @@ def product_edit(request, pk):
 
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
+
     if product.delete():
         msg = 'Product deleted successfully!'
     else:

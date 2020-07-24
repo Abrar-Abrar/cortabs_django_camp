@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block head_title %}{{product.title | capfirst }}{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details</title>
-</head>
-
-<body>
-    <div>{{product.brand}}</div>
-    <h1>{{product.title}}</h1>
-    <div>${{product.price}}</div>
-    <p>{{product.description}}</p>
-    <a href="{% url 'product_edit' pk=product.id %}">
-        <h2>Edit</h2>
-    </a>
-    <a href="{% url 'product_delete' pk=product.id %}">
-        <h2>Delete</h2>
-    </a>
-    <a href="{% url 'products_list' %}">Click here to back to products page</a>
-</body>
-
-</html>
+{% block content %}
+<section class="single-product-details clearfix">
+    <div class="product-details-img">
+        <img src="{{product.image.url}}" alt="{{ product.title }}" />
+    </div>
+    <div class="product-details-desc">
+        <div class="product-brand">{{product.brand | capfirst }}</div>
+        <h2 class="product-name">{{product.title | capfirst }}</h2>
+        <div class="product-price">${{product.price | floatformat:2 }}</div>
+        <p class="product-desc">
+            {{product.description}}
+        </p>
+        <a href="{% url 'product_edit' pk=product.id %}" class="edit-btn">Edit</a>
+        <a href="{% url 'product_delete' pk=product.id %}" class="delete-btn">Delete</a>
+    </div>
+</section>
+{% endblock %}

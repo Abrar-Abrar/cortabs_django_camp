@@ -1,29 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block head_title %}All Products{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <title>Products</title>
-</head>
+{% block content %}
+<section id="featured-products">
 
-<body>
-    <h1>Products:</h1>
-    <ul>
+    <h2 class="section-headline">
+    Featured Products 
+    <a href="{% url 'product_add' %}"><i class="fa fa-plus fa-xs"></i></a>
+    </h2>
+    <p class="section-description">
+        Refresh your look with pieces of our winter collection
+    </p>
+
+    <div class="products-wrapper clearfix">
         {% for product in products %}
-        <li>
-            <a href="{{ product.get_absolute_url }}">
-                <h2>{{ product.title }}</h2>
-            </a>
-            <div>{{product.brand}}</div>
-            <div>${{product.price}}</div>
-        </li>
+        <div class="product">
+            <div class="product-img">
+                <img src="{{product.image.url}}" alt="{{ product.title}}">
+                <a href="{{product.get_absolute_url}}" class="details-btn">Details</a>
+            </div>
+            <div class="product-description">
+                <div class="product-brand">{{ product.brand | capfirst }}</div>
+                <a class="product-name" href="{{product.get_absolute_url}}">{{ product.title | capfirst }}</a>
+                <div class="product-price">${{ product.price | floatformat:2 }}</div>
+            </div>
+        </div>
         {% empty %}
-            <li>No products yet.</li>
+        <p>No products yet.</p>
         {% endfor %}
-    </ul>
-</body>
-
-</html>
+    </div>
+</section>
+{% endblock %}

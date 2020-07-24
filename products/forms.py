@@ -6,4 +6,4 @@ class AddProductForm(ModelForm):
 
     class Meta:
         model = Product
-        fields = ("brand", "title", "description", "price")
+        fields = ("brand", "title", "description", "price", "image")
