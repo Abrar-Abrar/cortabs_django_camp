@@ -1,6 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 
 User = get_user_model()
 
@@ -19,3 +20,12 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ("username", "password1", "password2",
                   "first_name", "last_name", "email", "address")
+
+
+class EmailValidationBeforeResetPassword(PasswordResetForm):
+    def clean_email(self):
+        email = self.cleaned_data['email'].lower()
+        if not User.objects.filter(email=email, is_active=True).exists():
+            raise ValidationError(
+                "There is no user registered with this email address")
+        return email
