@@ -1,0 +1,10 @@
+Date: {{ date }}
+
+Hi {{ user }},
+You have new order to address: {{ address }}
+You ordered: 
+{% for item in items %}
+    {{ item.title }}: $ {{ item.price | floatformat:2}}
+{% endfor %}
+Order id = {{ order_id }}
+Total cost = {{ total_price }}

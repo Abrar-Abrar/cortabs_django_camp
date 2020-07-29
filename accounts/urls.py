@@ -5,20 +5,22 @@ from .forms import EmailValidationBeforeResetPassword
 from .views import signup, activate_email
 
 urlpatterns = [
-    path('signup/', signup, name='signup'),
-    path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('activate/<uid>/<token>/', activate_email, name='activate_email'),
+    path('accounts/signup/', signup, name='signup'),
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('accounts/activate/<uid>/<token>/',
+         activate_email, name='activate_email'),
 
-    path('password-reset/', auth_views.PasswordResetView.as_view(
+    path('accounts/password-reset/', auth_views.PasswordResetView.as_view(
          form_class=EmailValidationBeforeResetPassword),
          name='password_reset'),
-    path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(),
+    path('accounts/password-reset/done/',
+         auth_views.PasswordResetDoneView.as_view(),
          name='password_reset_done'),
-    path('password-reset/confirm/<uidb64>/<token>/',
+    path('accounts/password-reset/confirm/<uidb64>/<token>/',
          auth_views.PasswordResetConfirmView.as_view(),
          name='password_reset_confirm'),
-    path('password-reset/complete/',
+    path('accounts/password-reset/complete/',
          auth_views.PasswordResetCompleteView.as_view(),
          name='password_reset_complete')
 ]

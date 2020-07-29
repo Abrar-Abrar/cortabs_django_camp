@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block head_title %}{{product.title | capfirst }}{% endblock %}
+
+{% block content %}
+<ul>
+{% for product in products %}
+    <li>
+        <h2>{{ product.title | capfirst }}</h2>
+        <a href="{% url 'remove_from_cart' pk=product.id %}">Remove from card</a>
+    </li>
+{% empty %}
+<li>No products you pick in cart yet.</li>
+{% endfor %}
+</ul>
+<br>
+{% if total_price %}
+    <p>Total Price: $ {{ total_price | floatformat:2 }} </p>
+    <p> <a href="{% url 'clear_cart' %}">Clear Cart</a> | 
+    <a href="{% url 'order_new' %}">Checkout</a> </p>
+{% else %}
+    <p>Total Price: $  {{ 0 | floatformat:2 }} </p>
+{% endif %}
+{% endblock %}

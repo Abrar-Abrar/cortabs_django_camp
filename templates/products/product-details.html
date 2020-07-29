@@ -18,6 +18,7 @@
             <a href="{% url 'product_delete' pk=product.id %}" class="delete-btn">Delete</a>
         {% endif %}
 
+        <a href="{% url 'add_to_cart' pk=product.id %}" class="add-cart-btn">Add To Cart</a>
     </div>
 </section>
 {% endblock %}

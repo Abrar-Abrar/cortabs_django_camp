@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from .models import UserProfile
 
 User = get_user_model()
 
@@ -13,13 +14,11 @@ class SignUpForm(UserCreationForm):
         max_length=30, required=False, help_text='Optional.')
     email = forms.EmailField(
         max_length=254, help_text='Required. Inform a valid email address')
-    address = forms.CharField(
-        max_length=300, help_text='Required. Inform your address')
 
     class Meta:
         model = User
         fields = ("username", "password1", "password2",
-                  "first_name", "last_name", "email", "address")
+                  "first_name", "last_name", "email")
 
 
 class EmailValidationBeforeResetPassword(PasswordResetForm):
@@ -29,3 +28,9 @@ class EmailValidationBeforeResetPassword(PasswordResetForm):
             raise ValidationError(
                 "There is no user registered with this email address")
         return email
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ("address", )

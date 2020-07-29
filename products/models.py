@@ -9,7 +9,6 @@ class Product(models.Model):
     description = models.CharField(max_length=250, blank=True,  null=True)
     price = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-    # created_at = models.DateField(default=date.today())
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='products/', null=True)
 
