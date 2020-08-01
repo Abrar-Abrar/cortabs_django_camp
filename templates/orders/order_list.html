@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block head_title %}Orders{% endblock %}
+
+{% block content %}
+{% extends "base.html" %}
+{% block head_title %}Orders{% endblock %}
+
+{% block content %}
+<section>
+    <h1>Your Orders:</h1>
+    <ul>
+    {% for order in orders %}
+        <li>
+            <p class="order-items">Date:{{ order.ordered_at }}</p>
+            <p class="order-items">Items: </p> 
+            <ul class="order-ul">
+            {% for item in order.items.all %}
+                <li>{{ item }}</li>    
+            {% endfor %}
+            </ul>
+            <p class="order-items">Address: {{ order.address}} </p>
+        </li>
+    {% empty %}
+        <li>No orders yet.</li>
+    {% endfor %}
+</section>
+{% endblock %}

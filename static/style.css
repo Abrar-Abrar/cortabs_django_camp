@@ -696,14 +696,10 @@ a.back {
     margin: 40px auto;
 }
 
-.add-cart-btn {
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    width: 220px;
-    line-height: 40px;
-    font-size: 16px;
-    background: #000000;
-    color: #fff;
-    cursor: pointer;
-    margin: 40px auto;
+.order-items {
+    font-weight: 700;
+}
+
+.order-ul {
+    list-style: none;
 }

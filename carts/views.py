@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 
-from .models import Cart
+from .models import Cart, CartItem
 from products.models import Product
 
 
@@ -10,8 +10,12 @@ from products.models import Product
 def add_to_cart(request, pk):
     product = get_object_or_404(Product, pk=pk)
     cart = Cart.objects.get(user=request.user)
+    if Cart.objects.filter(user=request.user, items=product):
+        print('exist')
+        product.cartitem_set.get(cart=request.user.cart).quantity += 1
     cart.items.add(product)
-
+    # for item in cart.items.all():
+    #     print(item.cartitem_set.get(cart=request.user.cart).quantity)
     return redirect('cart')
 
 

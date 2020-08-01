@@ -1,23 +1,54 @@
 {% extends "base.html" %}
-{% block head_title %}{{product.title | capfirst }}{% endblock %}
+{% block head_title %}All Products{% endblock %}
 
 {% block content %}
-<ul>
-{% for product in products %}
-    <li>
-        <h2>{{ product.title | capfirst }}</h2>
-        <a href="{% url 'remove_from_cart' pk=product.id %}">Remove from card</a>
-    </li>
-{% empty %}
-<li>No products you pick in cart yet.</li>
-{% endfor %}
-</ul>
-<br>
-{% if total_price %}
-    <p>Total Price: $ {{ total_price | floatformat:2 }} </p>
-    <p> <a href="{% url 'clear_cart' %}">Clear Cart</a> | 
-    <a href="{% url 'order_new' %}">Checkout</a> </p>
-{% else %}
-    <p>Total Price: $  {{ 0 | floatformat:2 }} </p>
-{% endif %}
+<section class="clearfix">
+
+    <h2 class="section-headline">Cart</h2>
+    <p class="section-description">
+        Please check your products before checkout.
+    </p>
+
+    <div class="cart">
+        <ul>
+            {% for product in products %}
+            <li class="item">
+                <div class="cart-product-img">
+                    <img src="{{ product.image.url }}" alt="" />
+                </div>
+                <div>
+                    <h3>{{ product.title | capfirst }}</h3>
+                </div>
+                <div>
+                    <p>${{ product.price | floatformat:2 }}</p>
+                </div>
+                <div>
+                    <a href="{% url 'remove_from_cart' pk=product.id %}" class="remove">x</a>
+                </div>
+            </li>
+            {% empty %}
+            <li>
+                <p>No products yet.</p>
+            </li>
+            {% endfor %}
+            {% if products.count > 0 %}
+            <li class="item" id="cart-summary">
+                <div>
+                    <p></p>
+                </div>
+                <div>
+                    <h3>Total</h3>
+                </div>
+                <div>
+                    <p>${{ total_price | floatformat:2 }}</p>
+                </div>
+                <div>
+                    <a href="{% url 'order_new' %}" class="checkout">Checkout</a>
+                    <a href="{% url 'clear_cart' %}" class="clear">Clear Cart</a>
+                </div>
+            </li>
+            {% else %}
+                <p>Total Price: $  {{ 0 | floatformat:2 }} </p>
+            {% endif %}
+        </ul>
 {% endblock %}

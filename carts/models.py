@@ -11,10 +11,19 @@ from products.models import Product
 User = get_user_model()
 
 
+class CartItem(models.Model):
+    cart = models.ForeignKey('Cart', on_delete=models.CASCADE)
+    item = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return str(self.item)
+
+
 class Cart(models.Model):
     user = models.OneToOneField(
         User, related_name='cart', on_delete=models.CASCADE)
-    items = models.ManyToManyField(Product)
+    items = models.ManyToManyField(Product,  through=CartItem)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

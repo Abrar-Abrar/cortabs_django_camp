@@ -17,8 +17,9 @@
             <a href="{% url 'product_edit' pk=product.id %}" class="edit-btn">Edit</a>
             <a href="{% url 'product_delete' pk=product.id %}" class="delete-btn">Delete</a>
         {% endif %}
-
-        <a href="{% url 'add_to_cart' pk=product.id %}" class="add-cart-btn">Add To Cart</a>
+        <div class="cart-btn-box">
+            <a href="{% url 'add_to_cart' pk=product.id %}">Add To Cart</a>
+        </div>
     </div>
 </section>
 {% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from .forms import CheckoutForm
+from .models import Order
 
 # Create your views here.
 
@@ -21,3 +22,10 @@ def order_new(request):
         else:
             form = CheckoutForm()
     return render(request, 'orders/order-new.html', {'form': form})
+
+
+@login_required
+def orders_list(request):
+    # orders = Order.objects.filter(user=request.user)
+    orders = request.user.orders
+    return render(request, 'orders/order_list.html', {'orders': orders})

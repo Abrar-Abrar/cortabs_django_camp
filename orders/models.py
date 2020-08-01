@@ -23,9 +23,7 @@ class Order(models.Model):
 @receiver(pre_save, sender=Order)
 def fill_address_if_null(sender, instance, **kwargs):
     if not instance.address:
-        print('instance.user.address = ', instance.user.user_profile.address)
         instance.address = instance.user.user_profile.address
-        print('instance.address = ', instance.address)
 
 
 @receiver(post_save, sender=Order)
