@@ -2,18 +2,17 @@
 {% block head_title %}Orders{% endblock %}
 
 {% block content %}
-{% extends "base.html" %}
-{% block head_title %}Orders{% endblock %}
-
-{% block content %}
 <section>
-    <h1>Your Orders:</h1>
-    <ul>
+    <h2 class="section-headline">Orders</h2>
+    <p class="section-description">
+        Your order list of our store.
+    </p>
+    <ul class="order-ul">
     {% for order in orders %}
-        <li>
+        <li class="order-ul-li">
             <p class="order-items">Date:{{ order.ordered_at }}</p>
             <p class="order-items">Items: </p> 
-            <ul class="order-ul">
+            <ul class="inner-order-ul">
             {% for item in order.items.all %}
                 <li>{{ item }}</li>    
             {% endfor %}
@@ -21,7 +20,8 @@
             <p class="order-items">Address: {{ order.address}} </p>
         </li>
     {% empty %}
-        <li>No orders yet.</li>
+        <li><p>No orders yet.</p></li>
     {% endfor %}
+    </ul>
 </section>
 {% endblock %}

@@ -26,6 +26,5 @@ def order_new(request):
 
 @login_required
 def orders_list(request):
-    # orders = Order.objects.filter(user=request.user)
-    orders = request.user.orders
+    orders = Order.objects.filter(user=request.user)
     return render(request, 'orders/order_list.html', {'orders': orders})

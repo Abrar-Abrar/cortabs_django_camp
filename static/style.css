@@ -84,30 +84,7 @@ header {
     /*2*/
 }
 
-#login {
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    width: 140px;
-    line-height: 40px;
-    font-size: 16px;
-    background: transparent;
-    border: 1px solid #222;
-    color: #222;
-    cursor: pointer;
-}
-
 #logout {
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    width: 140px;
-    line-height: 40px;
-    font-size: 16px;
-    background: transparent;
-    border: 1px solid #222;
-    color: #222;
-    cursor: pointer;
     margin-left: 20px;
 }
 
@@ -706,4 +683,38 @@ a.back {
 
 .order-ul {
     list-style: none;
+}
+
+.order-ul p {
+    margin: 50px 0 0 0;
+    color: #777777;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.order-ul-li {
+    border-bottom: 1px solid #000;
+}
+
+.inner-order-ul {
+    list-style: none;
+}
+
+.my-botton {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+    line-height: 40px;
+    font-size: 16px;
+    background: transparent;
+    border: 1px solid #222;
+    color: #222;
+    cursor: pointer;
+}
+
+a.my-order {
+    position: absolute;
+    left: 2%;
+    top: 15px;
 }

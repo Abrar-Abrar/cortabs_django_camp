@@ -14,7 +14,7 @@
             {% for product in products %}
             <li class="item">
                 <div class="cart-product-img">
-                    <img src="{{ product.image.url }}" alt="" />
+                    <img src="{{ product.image.url }}" alt="product.title" />
                 </div>
                 <div>
                     <h3>{{ product.title | capfirst }}</h3>
