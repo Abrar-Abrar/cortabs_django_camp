@@ -33,12 +33,19 @@
                     {% endif %}
                 </div>
 
-                {% if user.is_authenticated %}
+                {% comment %} {% if user.is_authenticated %}
                 <p>Hi, {{ user.username }}</p>
                 <input type="button" id="logout" onclick="location.href='{% url 'logout' %}'" value="Log out" />
                 {% else  %}
                 <input type="button" id="login" onclick="location.href='{% url 'login' %}'" value="Log in" />
+                {% endif %} {% endcomment %}
+                {% if user.is_authenticated %}
+                    <p>Hi, {{ user.username }}</p>
+                    <a id="logout" href="{% url 'logout' %}">Logout</a>                
+                {% else  %}
+                    <a id="logout" href="{% url 'login' %}">Login</a>       
                 {% endif %}
+
             </div>
         </header>
 
