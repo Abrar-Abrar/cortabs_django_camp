@@ -685,7 +685,7 @@ a.back {
     list-style: none;
 }
 
-.order-ul p {
+.order-ul .no-product {
     margin: 50px 0 0 0;
     color: #777777;
     font-weight: bold;
@@ -694,6 +694,7 @@ a.back {
 
 .order-ul-li {
     border-bottom: 1px solid #000;
+    margin-bottom: 3px;
 }
 
 .inner-order-ul {
