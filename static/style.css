@@ -546,22 +546,26 @@ footer p {
 
 /*Cart Rules*/
 
-.cart {
+.cart,
+.order {
     margin-top: 48px;
 }
 
-.cart ul {
+.cart ul,
+.order ul {
     padding: 0;
 }
 
-.cart li {
+.cart li,
+.order li {
     display: block;
     width: 100%;
     margin: 20px 0;
     float: right;
 }
 
-.cart div {
+.cart div,
+.order div {
     float: left;
     width: 25%;
 }
@@ -575,7 +579,8 @@ footer p {
     margin-left: 16px;
 }
 
-.cart p {
+.cart p,
+.order .no-product {
     margin: 50px 0 0 0;
     color: #777777;
     font-weight: bold;
@@ -651,55 +656,7 @@ a.back {
 }
 
 
-/* my style*/
-
-.edit-btn {
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    width: 220px;
-    line-height: 40px;
-    font-size: 16px;
-    background: #42b179;
-    color: #fff;
-    cursor: pointer;
-    margin: 40px auto;
-}
-
-.delete-btn {
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    width: 220px;
-    line-height: 40px;
-    font-size: 16px;
-    background: #c85252;
-    color: #fff;
-    cursor: pointer;
-    margin: 40px auto;
-}
-
-.order-items {
-    font-weight: 700;
-}
-
-.order-ul {
-    list-style: none;
-}
-
-.order-ul .no-product {
-    margin: 50px 0 0 0;
-    color: #777777;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.order-ul-li {
-    border-bottom: 1px solid #000;
-    margin-bottom: 3px;
-}
-
-.inner-order-ul {
-    list-style: none;
-}
+/* my style */
 
 .my-botton {
     text-decoration: none;
@@ -714,8 +671,28 @@ a.back {
     cursor: pointer;
 }
 
-a.my-order {
+.my-order {
     position: absolute;
-    left: 2%;
     top: 15px;
+    left: 14%;
+}
+
+.order {
+    color: #fff;
+}
+
+.order>ul>li {
+    border: 1px solid #000;
+}
+
+.order>ul>li:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.726);
+}
+
+.order>ul>li:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.order ul li div p {
+    margin: 19px 0;
 }
